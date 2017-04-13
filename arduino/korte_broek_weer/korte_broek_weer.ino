@@ -1,12 +1,12 @@
 #include "config.h"
 #include "libraries.h"
 
-HTTPClient http;
 WiFiManager wifiManager;
 OpenWiFi hotspot;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
+String serverURL = SERVER_URL;
 unsigned long lastTimeCheck = 0;
 
 void setup() {
@@ -24,20 +24,31 @@ void setup() {
 }
 
 void loop() {
+  HTTPClient http;
+
   // Was our last request more than 5 minutes ago?
   if (lastTimeCheck == 0 || millis() - lastTimeCheck > 600000) {
-    lastTimeCheck = millis();
-    String requestString = serverURL + "/api/" + chipID + "/";
+    String requestString = serverURL + "/api";
     http.begin(requestString);
     int httpCode = http.GET();
-
+    
     if (httpCode == 200) {
       String response;
       response = http.getString();
-      Serial.println(response);
-      setColor(255, 0, 133);
+
+      int i = response.indexOf(' ');
+      int j = response.indexOf(' ', i + 1);
+      int k = response.indexOf(' ', j + 1);
+
+      int r = response.substring(0, i).toInt();
+      int g = response.substring(i + 1, j).toInt();
+      int b = response.substring(j + 1, k).toInt();
+      
+      setColor(r, g, b);
       strip.show();
     }
+
+    lastTimeCheck = millis();
   }
 }
 
