@@ -1,0 +1,27 @@
+{
+  "name": "korte-broek-weer",
+  "version": "1.0.0",
+  "description": "Kan ik een korte broek aan?",
+  "main": "server.js",
+  "scripts": {
+    "test": "xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickrttn/korte-broek-weer.git"
+  },
+  "keywords": [
+    "Arduino",
+    "NodeMCU",
+    "javascript"
+  ],
+  "author": "Nick Rutten <hello@nickrttn.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickrttn/korte-broek-weer/issues"
+  },
+  "homepage": "https://github.com/nickrttn/korte-broek-weer#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
