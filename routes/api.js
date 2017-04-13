@@ -7,7 +7,7 @@ var apikey = process.env.APIKEY;
 var d3Scale = require( 'd3-scale' );
 var url = `http://api.openweathermap.org/data/2.5/weather?q=Amsterdam&APPID=${apikey}&units=imperial`;
 var color = d3Scale.scaleLinear().domain( [ -10, 35 ] ) //range temperaturen
-  .range( [ "#0051AD", "#FFAF30", "#FF0B00" ] ); //kleuren
+  .range( [ "#FF0B00", "#FFAF30", "#0051AD" ] ); //kleuren
 router.get( '/', function( req, res, next ) {
   load( function( data ) {
     console.log( data.main );
