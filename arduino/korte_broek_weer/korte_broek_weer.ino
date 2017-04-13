@@ -24,12 +24,13 @@ void setup() {
 }
 
 void loop() {
-  HTTPClient http;
-
   // Was our last request more than 5 minutes ago?
   if (lastTimeCheck == 0 || millis() - lastTimeCheck > 600000) {
-    String requestString = serverURL + "/api";
+    String requestString = serverURL + "api";
+    
+    HTTPClient http;
     http.begin(requestString);
+    
     int httpCode = http.GET();
     
     if (httpCode == 200) {
@@ -43,7 +44,7 @@ void loop() {
       int r = response.substring(0, i).toInt();
       int g = response.substring(i + 1, j).toInt();
       int b = response.substring(j + 1, k).toInt();
-      
+
       setColor(r, g, b);
       strip.show();
     }
