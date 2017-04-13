@@ -27,10 +27,11 @@
   },
   "homepage": "https://github.com/nickrttn/korte-broek-weer#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "concat-stream": "^1.6.0",
+    "ejs": "^2.5.6",
     "express": "^4.15.2",
-    "nodemon": "^1.11.0",
-    "body-parser": "^1.17.1"
+    "nodemon": "^1.11.0"
   },
   "devDependencies": {
     "dotenv": "^4.0.0"
