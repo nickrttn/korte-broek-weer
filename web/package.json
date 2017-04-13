@@ -4,7 +4,8 @@
   "description": "Kan ik een korte broek aan?",
   "main": "server.js",
   "scripts": {
-    "test": "xo"
+    "test": "xo",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,12 @@
   },
   "homepage": "https://github.com/nickrttn/korte-broek-weer#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "concat-stream": "^1.6.0",
+    "express": "^4.15.2",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0"
   }
 }
