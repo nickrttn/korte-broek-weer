@@ -20,7 +20,7 @@ var index = require('./routes/index');
 
 app.use('/', index);
 
-app.set('port', process.env.PORT || 3005);
+app.set('port', process.env.PORT);
 
 server.listen(app.get('port'), function(){
     console.log('app started on localhost:3005');
