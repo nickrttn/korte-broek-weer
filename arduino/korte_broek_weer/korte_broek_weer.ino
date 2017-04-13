@@ -27,10 +27,6 @@ void loop() {
   // Was our last request more than 5 minutes ago?
   if (lastTimeCheck == 0 || millis() - lastTimeCheck > 600000) {
     lastTimeCheck = millis();
-<<<<<<< Updated upstream
-    setColor(255, 0, 133);
-    strip.show();
-=======
     String requestString = serverURL + "/api/" + chipID + "/";
     http.begin(requestString);
     int httpCode = http.GET();
@@ -40,9 +36,8 @@ void loop() {
       response = http.getString();
       Serial.println(response);
       setColor(255, 0, 133);
-      strip.show();  
+      strip.show();
     }
->>>>>>> Stashed changes
   }
 }
 
