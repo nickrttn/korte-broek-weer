@@ -1,11 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var app = express();
 
 var path = require('path');
 var http = require('http');
-var path = require('path');
 
+require('dotenv').config();
+
+var app = express();
 var server = http.createServer(app);
 
 // app.use(bodyParser.json());
@@ -17,8 +18,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 var index = require('./routes/index');
+var api = require('./routes/api');
 
 app.use('/', index);
+app.use('/api', api);
 
 app.set('port', process.env.PORT);
 
