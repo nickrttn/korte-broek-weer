@@ -1,16 +1,9 @@
-var concat = require('concat-stream');
-var https = require('https');
-var env = require('dotenv').config();
+var express = require('express');
+var router = express.Router();
 
-function getData(recieve){
-    https.get('https://www.rijksmuseum.nl/api/nl/collection/?key=' + process.env.API_KEY + '&format=json&q=', function (res) {
-    res.pipe(concat(callback));
+router.get('/', function(req, res, next) {
+  res.send('46 74 91');
+});
 
-      function callback(argument) {
 
-        var data = JSON.parse(argument);
-        recieve(data);
-      }
-  });
-}
 module.exports = router;
