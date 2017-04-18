@@ -10,7 +10,6 @@ var color = d3Scale.scaleLinear().domain( [ -10, 35 ] ) //range temperaturen
   .range( [ "#0051AD", "#FFAF30", "#FF0B00" ] ); //kleuren
 router.get( '/', function( req, res, next ) {
   load( function( data ) {
-  	console.log(getColor(computeFactor(data.main.temp, data.wind.speed)));
     res.json( getColor(computeFactor(data.main.temp, data.wind.speed)));
   }, url );
 } );
