@@ -2,16 +2,29 @@
 ws2812.init()
 buffer = ws2812.newBuffer(8, 3)
 
-http.get('http://95.85.50.81',
+http.get('http://95.85.50.81/api',
 	nil,
-	function(status, data)
-		print(status)
-		print(data)
+	function(status, json)
+		print(json)
+
+		color = cjson.decode(json)
+
+		for k,v in pairs(color) do
+			color[k] = tonumber(v)
+		end
+
+		print(string.char(color["g"], color["r"], color["b"]))
+
+		-- for i=1,buffer:size() do
+		-- 	buffer:set(i,
+		-- 		string.char(color["g"], color["r"], color["b"])
+		-- 	);
+		-- end
+
+		-- ws2812.write(buffer)
 	end
 )
 
-for i=2,buffer:size() do
-	buffer:set(i, string.char(255, 127, 0));
-end
+function()
 
-ws2812.write(buffer)
+end
