@@ -14,4 +14,5 @@ function startup()
     end
 end
 
+ws2812.init()
 wifimodule.connect(startup)
