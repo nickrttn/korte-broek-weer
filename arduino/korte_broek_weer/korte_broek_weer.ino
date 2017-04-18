@@ -8,6 +8,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KH
 
 String serverURL = SERVER_URL;
 unsigned long lastTimeCheck = 0;
+unsigned long lastButtonPush = 0;
 
 void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
@@ -19,8 +20,8 @@ void setup() {
 
   hotspot.begin(BACKUP_SSID, BACKUP_PASSWORD);
 
-  String chipID = generateChipID();
-  Serial.println("Your ID is " + chipID);
+//  String chipID = generateChipID();
+//  Serial.println("Your ID is " + chipID);
 }
 
 void loop() {
@@ -50,6 +51,24 @@ void loop() {
     }
 
     lastTimeCheck = millis();
+  }
+
+  if (digitalRead(BUTTON_PIN) == 0) {
+    lastButtonPush = millis();
+    strip.setBrightness(100);
+    strip.show();
+
+    for (int i = 0; i < strip.numPixels(); i++) {
+      strip.getPixelColor();
+    }
+  }
+
+  if (millis() - lastButtonPush > 60000) {
+    for (int i = 255; i == 0; i--) {
+      strip.setBrightness(i);
+      strip.show();
+      delay(8);
+    }
   }
 }
 

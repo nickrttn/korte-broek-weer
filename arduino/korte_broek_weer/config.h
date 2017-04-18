@@ -1,5 +1,5 @@
 
-#define BACKUP_SSID "BackupSSIDName"
+#define BACKUP_SSID "BackupSSID"
 #define BACKUP_PASSWORD "BackupPassword"
 
 #define SERVER_URL "http://korte-broek-weer.herokuapp.com/"
