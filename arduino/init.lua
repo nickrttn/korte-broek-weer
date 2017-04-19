@@ -3,6 +3,7 @@
 local wifimodule = require 'wifimodule'
 
 function startup()
+		print('startup called')
     if file.open('init.lua') == nil then
         print('init.lua deleted or renamed')
     else

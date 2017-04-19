@@ -1,27 +1,12 @@
--- Initialise
+request = require 'request'
+
 buffer = ws2812.newBuffer(8, 3)
 
-function request(host, path)
-	print('request() started', host, path)
-  local sck = tls.createConnection()
+request.get('korte-broek-weer.herokuapp.com', '/api', handleResponse)
 
-  sck:on('connection', function(s)
-    print('CONN')
-    s:send(
-      'GET ' .. path .. ' HTTP/1.0\r\n' ..
-      'Connection: close\r\n' ..
-      'Host: ' .. host .. '\r\n' ..
-      '\r\n'
-    )
-  end)
-
-  sck:on('receive', function(s, d)
-  	print(s)
-    local color = parse(d)
-    setColor(color)
-  end)
-
-  sck:connect(443, host)
+function handleResponse(body)
+	local color = parse(d)
+	setColor(color)
 end
 
 function parse(body)
@@ -42,5 +27,3 @@ function setColor(color)
 
 	ws2812.write(buffer)
 end
-
-request('korte-broek-weer.herokuapp.com', '/api');
