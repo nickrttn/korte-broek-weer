@@ -4,26 +4,30 @@ buffer = ws2812.newBuffer(8, 3)
 
 function parse(body)
 	local json = body:sub(body:find("{"), body:len())
-	return cjson.decode(json)
+	local t = cjson.decode(json)
+
+	for k,v in pairs(t) do
+		t[k] = tonumber(v)
+	end
+
+	return t
 end
 
-function setColor(color)
+function setColor(clr)
 	for i=1,buffer:size() do
-		buffer:set(i,
-			string.char(
-				tonumber(color["g"]),
-				tonumber(color["r"]),
-				tonumber(color["b"])
-			)
-		)
+		buffer:set(i, string.char(clr["g"], clr["r"], clr["b"]))
 	end
 
 	ws2812.write(buffer)
 end
 
-function handleResponse(body)
-	local color = parse(body)
-	setColor(color)
+function handleResponse(res)
+	local clr = parse(res)
+	setColor(clr)
 end
 
-request.get('korte-broek-weer.herokuapp.com', '/api', handleResponse)
+request.get(
+	'korte-broek-weer.herokuapp.com',
+	'/api',
+	handleResponse
+)
