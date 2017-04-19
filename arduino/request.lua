@@ -1,6 +1,6 @@
 local request = {}
 
-function request.get(host, path, callback)
+function request.get(host, path, cb)
 	local sck = tls.createConnection()
 
 	sck:on('connection', function(s)
@@ -12,8 +12,8 @@ function request.get(host, path, callback)
 		)
 	end)
 
-	sck:on('receive', function(status, response)
-		callback(response)
+	sck:on('receive', function(s, res)
+		cb(res)
 	end)
 
 	sck:connect(443, host)

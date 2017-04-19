@@ -1,13 +1,6 @@
-request = require 'request'
+local request = require 'request'
 
 buffer = ws2812.newBuffer(8, 3)
-
-request.get('korte-broek-weer.herokuapp.com', '/api', handleResponse)
-
-function handleResponse(body)
-	local color = parse(d)
-	setColor(color)
-end
 
 function parse(body)
 	local json = body:sub(body:find("{"), body:len())
@@ -27,3 +20,10 @@ function setColor(color)
 
 	ws2812.write(buffer)
 end
+
+function handleResponse(body)
+	local color = parse(body)
+	setColor(color)
+end
+
+request.get('korte-broek-weer.herokuapp.com', '/api', handleResponse)

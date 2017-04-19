@@ -12,22 +12,24 @@ function wifimodule.connect(callback)
   wifi.sta.eventMonReg(wifi.STA_FAIL, function() print('[Wi-Fi] Failed to connect') end)
   wifi.sta.eventMonReg(wifi.STA_GOTIP, function()
     print('[Wi-Fi] Got IP')
-    local conn = net.createConnection(net.TCP, 0)
-    ip, nm, gateway = wifi.sta.getip()
+    -- start SNTP automatic syncing
+    callback()
+    -- local conn = net.createConnection(net.TCP, 0)
+    -- ip, nm, gateway = wifi.sta.getip()
 
-    local redirHost = gateway .. ':8002'
+    -- local redirHost = gateway .. ':8002'
 
-    -- Auto-accept HvA open wifi thingy
-    conn:on('receive', function(sck, c)
-      print('[Wi-Fi] Connected to HvA Open Wi-Fi!')
-      callback()
-    end)
+    -- -- Auto-accept HvA open wifi thingy
+    -- conn:on('receive', function(sck, c)
+    --   print('[Wi-Fi] Connected to HvA Open Wi-Fi!')
+    --   callback()
+    -- end)
 
-    conn:on('connection', function(sck, c)
-      sck:send('POST / HTTP/1.1\r\nHost: ' .. redirHost .. '\r\nOrigin: http://' .. redirHost .. '\r\nContent-Type: application/x-www-form-urlencoded\r\nReferer: http://' .. redirHost .. '/index.php\r\nContent-Length: 52\r\n\r\nredirurl=http%3A%2F%2Fwww.hva.nl%2F&accept=Verbinden')
-    end)
+    -- conn:on('connection', function(sck, c)
+    --   sck:send('POST / HTTP/1.1\r\nHost: ' .. redirHost .. '\r\nOrigin: http://' .. redirHost .. '\r\nContent-Type: application/x-www-form-urlencoded\r\nReferer: http://' .. redirHost .. '/index.php\r\nContent-Length: 52\r\n\r\nredirurl=http%3A%2F%2Fwww.hva.nl%2F&accept=Verbinden')
+    -- end)
 
-    conn:connect(8002, gateway)
+    -- conn:connect(8002, gateway)
   end)
   wifi.sta.eventMonStart()
   wifi.sta.connect()
