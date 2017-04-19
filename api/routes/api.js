@@ -41,7 +41,7 @@ router.post('/user', function(req, res) {
    });
 });
 
-var url = process.env.WHEATHERURL;
+var url = process.env.WEATHERURL;
 var color = d3Scale.scaleLinear().domain( [ -10, 35 ] ) //range temperaturen
   .range( [ "#0051AD", "#FFAF30", "#FF0B00" ] ); //kleuren
 

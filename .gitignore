@@ -42,3 +42,11 @@ jspm_packages
 web/.env
 
 web/.env
+
+api/korte_broek/CURRENT
+
+api/korte_broek/LOCK
+
+api/korte_broek/LOG
+
+api/korte_broek/MANIFEST-000002
