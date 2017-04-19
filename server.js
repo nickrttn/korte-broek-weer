@@ -15,13 +15,8 @@ app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-var index = require('./routes/index');
 var api = require('./routes/api');
-var dbhandler = require('./routes/dbhandler');
 
-app.use('/', index);
 app.use('/api', api);
 
 app.set('port', process.env.PORT);
