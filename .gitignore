@@ -38,3 +38,7 @@ jspm_packages
 
 .env*
 .DS_Store*
+
+web/.env
+
+web/.env
