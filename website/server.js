@@ -9,8 +9,8 @@ require('dotenv').config();
 var app = express();
 var server = http.createServer(app);
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -18,13 +18,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 var index = require('./routes/index');
-var api = require('./routes/api');
+
 
 app.use('/', index);
-app.use('/api', api);
+
+app.use('/user/add', index);
 
 app.set('port', process.env.PORT);
 
 server.listen(app.get('port'), function(){
-    console.log('app started on localhost:3005');
+    console.log('app started on localhost:3006');
 });
