@@ -3,8 +3,8 @@ local wifimodule = {}
 function wifimodule.connect(callback)
   -- Connect to Wi-Fi
   wifi.setmode(wifi.STATION)
-  wifi.sta.config('HvA Open Wi-Fi', '')
-  -- wifi.sta.config("Sojasaus 5Ghz", 'treb3f@EsTx')
+  -- wifi.sta.config('HvA Open Wi-Fi', '')
+  wifi.sta.config("Sojasaus 2Ghz", 'treb3f@EsTx')
   wifi.sta.eventMonReg(wifi.STA_IDLE, function() print('[Wi-Fi] Idle') end)
   wifi.sta.eventMonReg(wifi.STA_CONNECTING, function() print('[Wi-Fi] Connecting...') end)
   wifi.sta.eventMonReg(wifi.STA_WRONGPWD, function() print('[Wi-Fi] Wrong Password') end)
