@@ -34,12 +34,14 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "hex-to-rgb": "^1.0.1",
     "install": "^0.8.8",
     "npm": "^4.5.0",
     "pouchdb": "^6.1.2",
     "pouchdb-upsert": "^2.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "xo": "^0.18.1"
   }
 }
