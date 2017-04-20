@@ -19,7 +19,7 @@ router.get('/user/:id', (req, res) => {
 	user.get(req.params.id, user => res.json(user));
 });
 
-router.post('/users', (req, res) => {
+router.get('/users', (req, res) => {
 	user.getAll(docs => {
 		res.json(docs);
 	});
