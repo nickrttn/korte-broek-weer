@@ -1,6 +1,6 @@
+const weather = require('../db/weather');
 const util = require('./utility');
 const request = require('./request');
-const weather = require('../db/weather');
 
 module.exports = time => {
 	function getWindchill() {
