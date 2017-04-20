@@ -12,18 +12,22 @@ router.get('/', function(req, res) {
 
 //post request to api server
 router.post('/', function(req, res) {
-
-request.post({
- url: process.env.ENDPOINT,
- form: {
-  id: req.body.boxid.value,
-  name: req.body.name.value,
-  color: req.body.color.value
- },
- json: true
-}, function(err, response, body) {
-    res.send('Succes');
- });
+	request.post({
+		method: 'POST',
+	  url: `${process.env.ENDPOINT}:3001/user`,
+	  form: {
+	  	id: req.body.boxid.value,
+	  	name: req.body.name.value,
+	  	color: req.body.color.value
+	 	},
+	 	json: true
+	}, function(err, response, body) {
+		if (err) {
+			res.send(err)
+			return;
+		}
+		res.send('Great success');
+	});
 });
 
 module.exports = router;
