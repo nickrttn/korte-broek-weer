@@ -47,6 +47,7 @@ input {
 
 input[type="text"] {
     padding-left: 0.3em;
+    font-style: italic;
 }
 
 input#box-id {
