@@ -3,6 +3,8 @@ const upsert = require('pouchdb-upsert');
 
 PouchDB.plugin(upsert);
 
-const db = new PouchDB('korte_broekdb');
+require('dotenv').config();
+
+const db = new PouchDB(process.env.COUCHDB_ENDPOINT);
 
 module.exports = db;
