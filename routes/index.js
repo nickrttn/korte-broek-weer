@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
 	request.post({
 		method: 'POST',
-	  url: `${process.env.ENDPOINT}:3001/user`,
+	  url: `${process.env.ENDPOINT}/user`,
 	  form: {
 	  	id: req.body.boxid.value,
 	  	name: req.body.name.value,
