@@ -36,7 +36,7 @@
 print('Box ID: ' .. node.chipid())
 
 -- request.get(
--- 	'korte-broek-weer.herokuapp.com',
--- 	'/api',
+-- 	'korte-broek-api.herokuapp.com',
+-- 	'/user/' .. node.chipid(),
 -- 	handleResponse
 -- )

@@ -1,13 +1,16 @@
-var express = require( 'express' );
-var concat = require( 'concat-stream' );
-var http = require( 'http' );
-var env = require( 'dotenv' ).config();
-var router = express.Router();
-var d3Scale = require( 'd3-scale' );
+var express = require('express');
+var concat = require('concat-stream');
+var http = require('http');
+var d3Scale = require('d3-scale');
 var hexToRgb = require('hex-to-rgb');
+
 var PouchDB = require('pouchdb');
-var db = new PouchDB('korte_broekdb');
 PouchDB.plugin(require('pouchdb-upsert'));
+
+var db = new PouchDB('korte_broekdb');
+
+require( 'dotenv' ).config();
+var router = express.Router();
 
 router.post('/user', function(req, res) {
   var color = hexToRgb(req.body.color);
@@ -82,13 +85,6 @@ router.get('/user/:id', function(req, res) {
   db.get(req.params.id, function(err, doc) {
     if (err) throw err;
     res.json(doc);
-  });
-});
-
-
-router.get('/user/:id', function(req, res) {
-  db.get(req.params.id, function(err, body) {
-    res.json(body);
   });
 });
 
