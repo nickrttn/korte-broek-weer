@@ -1,57 +1,42 @@
--- Initialise
-buffer = ws2812.newBuffer(8, 3)
+-- local request = require 'request'
 
-function request(host, path)
-    local sck = tls.createConnection()
-    sck:on('connection', function(s)
-        print('CONN')
-        s:send(
-            'GET ' .. path .. ' HTTP/1.0\r\n' ..
-            'Connection: close\r\n' ..
-            'Host: ' .. host .. '\r\n' ..
-            '\r\n'
-        )
-    end)
-    sck:on('receive', function(s, d)
-        local color = parse(d)
-        setColor(color)
-    end)
-    sck:on('disconnection', function(s)
-        print('CLOSE')
-    end)
-    sck:on('reconnection', function(s, e)
-        print('ERR', e)
-    end)
-    sck:connect(443, host)
-end
+-- buffer = ws2812.newBuffer(8, 3)
 
-function parse(body)
-	local json = body:sub(body:find("{"), body:len())
-	return cjson.decode(json)
-end
+-- function parse(body)
+-- 	print(body)
 
--- http.get('https://korte-broek-weer.herokuapp.com/api',
--- 	nil,
--- 	function(status, json)
--- 		print(status)
--- 		print(json)
--- 		-- color = cjson.decode(json)
--- 		-- setColor(color)
+-- 	local json = body:sub(body:find("{"), body:len())
+-- 	local t = cjson.decode(json)
+
+-- 	for k,v in pairs(t) do
+-- 		t[k] = tonumber(v)
 -- 	end
+
+-- 	return t
+-- end
+
+-- function setColor(clr)
+-- 	print(clr)
+-- 	if full == true then
+-- 		buffer:fill(string.char(clr["g"], clr["r"], clr["b"]))
+-- 	else
+-- 		for i=1,buffer:size()/2 do
+-- 			buffer:set(i, string.char(clr["g"], clr["r"], clr["b"]))
+-- 		end
+-- 	end
+
+-- 	ws2812.write(buffer)
+-- end
+
+-- function handleResponse(res)
+-- 	local clr = parse(res)
+-- 	setColor(clr, false)
+-- end
+
+print('Box ID: ' .. node.chipid())
+
+-- request.get(
+-- 	'korte-broek-weer.herokuapp.com',
+-- 	'/api',
+-- 	handleResponse
 -- )
-
-function setColor(color)
-	for i=1,buffer:size() do
-		buffer:set(i,
-			string.char(
-				tonumber(color["g"]),
-				tonumber(color["r"]),
-				tonumber(color["b"])
-			)
-		)
-	end
-
-	ws2812.write(buffer)
-end
-
-request('korte-broek-weer.herokuapp.com', '/api');
