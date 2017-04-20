@@ -1,8 +1,64 @@
 body {
-  font-family: "Open Sans", "sans-serif";
-  color: #333333;
+    font-family: "Open Sans", "sans-serif";
+    color: #333333;
+    background-image:url(bg.jpg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: white;
+    font-size: 2em;
+    text-shadow: 1px 0px 1px black;
 }
 
 p {
-  padding: 1em;
+    padding: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 7px;
+    padding: 1em;
+    width: 40%;
+}
+
+legend {
+    font-weight: 800;
+    font-size: 1.5em;
+    margin-bottom: 0.6em;
+    align-self: center;
+    display: flex;
+}
+
+input {
+    font-family: "Open Sans", "sans-serif";
+    font-size: 1em;
+    margin-bottom: 1em;
+    margin-top: 0.3em;
+}
+
+input[type="text"] {
+    padding-left: 0.3em;
+}
+
+input#box-id {
+    width: 20%;
+}
+
+input#userInput {
+    width: 40%;
+}
+
+input[type="submit"] {
+    background-color: #afcbf7;
+    border: none;
+    border-radius: 3px;
 }
