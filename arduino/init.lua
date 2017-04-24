@@ -1,7 +1,5 @@
 -- load credentials, 'SSID' and 'PASSWORD' declared and initialize in there
 local wifimodule = require 'wifimodule'
-local application = require 'application'
-local colors = require 'colors'
 
 function startup()
     if file.open('init.lua') == nil then
@@ -11,7 +9,6 @@ function startup()
         sntp.sync(nil, nil, nil, 1)
         -- the actual application is stored in 'application.lua'
         dofile('application.lua')
---        Als dit de application.lua moet starten doet ie het niet
     end
 end
 
