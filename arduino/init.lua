@@ -2,6 +2,7 @@
 local wifimodule = require 'wifimodule'
 local application = require 'application'
 local colors = require 'colors'
+local potmeter = require 'potmeter'
 
 function startup()
     if file.open('init.lua') == nil then
