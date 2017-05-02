@@ -22,9 +22,12 @@ request.post({
  },
  json: true
 }, function(err, response, body) {
-    res.send('Succes');
+    if (err) {
+      res.render('failure', {error: err});
+    } else {
+      res.render('success', {body: body});
+    }
  });
 });
 
 module.exports = router;
-

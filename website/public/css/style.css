@@ -1,20 +1,39 @@
 body {
-    font-family: "Open Sans", "sans-serif";
-    color: #333333;
-    background-image:url(bg.jpg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+  font-family: "Lato", "sans-serif";
+  color: #333333;
+  background-image:url(../img/bg.jpg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(159, 65, 242, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+.gif {
+    width: 4em;
 }
 
 h1 {
-    color: white;
-    font-size: 2em;
-    text-shadow: 1px 0px 1px black;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  width: 40vw;
+  padding: 0.5em;
+  font-weight: normal;
+  font-family: "Leckerli One", sans-serif;
 }
 
 p {
@@ -24,22 +43,20 @@ p {
 form {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    border-radius: 7px;
-    padding: 1em;
     width: 40%;
 }
 
 legend {
-    font-weight: 800;
-    font-size: 1.5em;
-    margin-bottom: 0.6em;
-    align-self: center;
-    display: flex;
+  color: white;
+  font-weight: 800;
+  font-size: 1em;
+  margin-bottom: 0.6em;
+  display: flex;
+  padding-bottom: 1em;
 }
 
 input {
-    font-family: "Open Sans", "sans-serif";
+    font-family: "Lato", "sans-serif";
     font-size: 1em;
     margin-bottom: 1em;
     margin-top: 0.3em;
@@ -47,19 +64,33 @@ input {
 
 input[type="text"] {
     padding-left: 0.3em;
-    font-style: italic;
 }
 
-input#box-id {
-    width: 20%;
+input {
+    width: 100%;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    height: 2em;
+    box-sizing: border-box;
+    border-radius: 0.1em;
+    color: white;
 }
 
-input#userInput {
-    width: 40%;
+label {
+    color: white;
+    font-size: 0.9em;
 }
 
 input[type="submit"] {
-    background-color: #afcbf7;
-    border: none;
-    border-radius: 3px;
+  background: none;
+  border: 0.2em solid white;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  height: 3em;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
