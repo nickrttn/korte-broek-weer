@@ -2,33 +2,36 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>
-        Mystery box
+        Registreer box
       </title>
       <link href="/css/style.css" rel="stylesheet"/>
-    </meta>
+      <link href="https://fonts.googleapis.com/css?family=Lato|Leckerli+One" rel="stylesheet">
   </head>
   <body>
-    <form method="post" action="/user/add">
-      <label for="">
-        Vier-cijferige Box-ID
-      </label>
-      <input enctype="multipart/form-data" id="box-id" name="boxid[value]" placeholder="Box ID" type="text" required>
-
-      <label for="">
-        Naam
-      </label>
-      <input enctype="multipart/form-data" id="userInput" name="name[value]" placeholder="Naam" type="text" required>
+    <div class="overlay">
+      <img src="/img/pants.gif" alt="pants gif animation" class="gif">
+      <h1>Kan ik een korte broek aan?</h1>
+      <form method="post" action="/user/add">
         <label for="">
-          Kleur
+          Vier-cijferige Box-ID:
         </label>
-        <input enctype="multipart/form-data" id="color-input" name="color[value]" placeholder="color" type="color">
+        <input enctype="multipart/form-data" id="box-id" name="boxid[value]" placeholder="1D75" type="text" required>
 
-        <input type="submit" value="register">
-    </form>
+        <label for="">
+          Naam:
+        </label>
+        <input enctype="multipart/form-data" id="userInput" name="name[value]" placeholder="Chantal" type="text" required>
+          <label for="">
+            Kleur:
+          </label>
+          <input enctype="multipart/form-data" id="color-input" name="color[value]" placeholder="#00d4ff" type="color" value="#00d4ff">
+
+          <input type="submit" value="Registreer">
+      </form>
+    </div>
     <script defer="" src="/scripts/index.js">
     </script>
   </body>
 </html>
-
-
