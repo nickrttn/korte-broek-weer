@@ -7,6 +7,7 @@ First the user needs to make an account on the web app. Here they declare their 
 
 After the user has seen what kind of weather it is, they can share what they want to wear with their friends. By turning a button (potentiometer) they can select shorts or pants. By pressing on the big red button the user sees if they should wear shorts or pants. By shaking the box you can see what others are going to wear.
 
+<img src="images/screen.png" alt=“Screenshot website” height="400px">
 
 ### Functionality
 - Feedback of the windchill 
