@@ -3,7 +3,9 @@ const db = require('./create');
 const user = {};
 
 user.upsert = (data, cb) => {
+	console.log(data);
 	db.upsert(data.id, doc => {
+		console.log(doc);
 		return doc.rev ? {
 			_id: data.id,
 			_rev: doc.rev,
@@ -22,11 +24,7 @@ user.upsert = (data, cb) => {
 				b: data.color[2]
 			}
 		};
-	}, err => {
-		cb('error');
-		if (err) throw err; // eslint-disable-line curly
-	});
-	cb('success');
+	}, err => err ? cb('error') : cb('success'));
 };
 
 user.get = (id, cb) => {
