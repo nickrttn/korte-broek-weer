@@ -36,7 +36,7 @@ After the user has seen what kind of weather it is, they can share what they wan
 - [NodeMCU](#nodemcu)
 
 
-## [App](#app)
+### [App](#app)
 First clone the repo:
 ```git
 git clone https://github.com/nickrttn/korte-broek-weer.git
@@ -62,5 +62,5 @@ Now start up the server:
 npm start
 ```
 
-## [NodeMCU](#nodemcu)
+### [NodeMCU](#nodemcu)
 See: [NodeMCU README](https://github.com/nickrttn/korte-broek-weer/tree/master/arduino)
