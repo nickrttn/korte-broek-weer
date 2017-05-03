@@ -1,4 +1,4 @@
-## Project: What to Weather [DEMO](https://korte-broek-weer.herokuapp.com)
+## Project: What to Weather
 We created a box that shows the windchill temperature of the day. The windchill will be displayed with pants for cold weather and shorts for warm weather. We decided that everything under the 20 degrees celsius is cold and everything above 20 degrees celsius is warm. 
 
 But why make this? We all have that moment when we look outside and we can't decide what to wear. This 'What to Weather' box solves that problem.
