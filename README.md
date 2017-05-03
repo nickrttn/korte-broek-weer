@@ -62,5 +62,5 @@ Now start up the server:
 npm start
 ```
 
-## NodeMCU(#nodemcu)
+## [NodeMCU](#nodemcu)
 See: [NodeMCU README](https://github.com/nickrttn/korte-broek-weer/tree/master/arduino)
