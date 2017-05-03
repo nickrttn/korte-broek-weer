@@ -24,7 +24,7 @@ After the user has seen what kind of weather it is, they can share what they wan
 
 <img src="images/wtwflyer.png" alt=“Flyer product” height="400px">
 
-———————
+----
 ## Architecture
 <img src="images/architectureWTW.png" alt=“Architecture” height="400px">
 
