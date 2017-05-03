@@ -1,4 +1,4 @@
-## Project: What to Weather
+## Project: What to Weather [DEMO](https://korte-broek-weer.herokuapp.com)
 We created a box that shows the windchill temperature of the day. The windchill will be displayed with pants for cold weather and shorts for warm weather. We decided that everything under the 20 degrees celsius is cold and everything above 20 degrees celsius is warm. 
 
 But why make this? We all have that moment when we look outside and we can't decide what to wear. This 'What to Weather' box solves that problem.
@@ -6,6 +6,8 @@ But why make this? We all have that moment when we look outside and we can't dec
 First the user needs to make an account on the web app. Here they declare their name, NodeMcu ID and a color. The color will be used to show the other users who is wearing what.
 
 After the user has seen what kind of weather it is, they can share what they want to wear with their friends. By turning a button (potentiometer) they can select shorts or pants. By pressing on the big red button the user sees if they should wear shorts or pants. By shaking the box you can see what others are going to wear.
+
+[DEMO](https://korte-broek-weer.herokuapp.com)
 
 <img src="images/screen.png" alt=“Screenshot website” height="400px">
 
