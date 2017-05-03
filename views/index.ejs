@@ -2,34 +2,42 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>
-        Registreer box
-      </title>
-      <link href="/css/style.css" rel="stylesheet"/>
-      <link href="https://fonts.googleapis.com/css?family=Lato|Leckerli+One" rel="stylesheet">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>
+          Registreer box
+        </title>
+        <link href="/css/style.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato|Leckerli+One" rel="stylesheet">
+        </link>
+      </meta>
+    </meta>
   </head>
   <body>
     <div class="overlay">
-      <img src="/img/pants.gif" alt="pants gif animation" class="gif">
-      <h1>Kan ik een korte broek aan?</h1>
-      <form method="post" action="/user/add">
-        <label for="">
-          Vier-cijferige Box-ID:
-        </label>
-        <input enctype="multipart/form-data" id="box-id" name="boxid[value]" placeholder="1D75" type="text" required>
-
-        <label for="">
-          Naam:
-        </label>
-        <input enctype="multipart/form-data" id="userInput" name="name[value]" placeholder="Chantal" type="text" required>
+      <img alt="pants gif animation" class="gif" src="/img/pants.gif">
+        <h1>
+          Kan ik een korte broek aan?
+        </h1>
+        <form action="/user/add" method="post">
           <label for="">
-            Kleur:
+            Vier-cijferige Box-ID:
           </label>
-          <input enctype="multipart/form-data" id="color-input" name="color[value]" placeholder="#00d4ff" type="color" value="#00d4ff">
-
-          <input type="submit" value="Registreer">
-      </form>
+          <input enctype="multipart/form-data" id="box-id" name="boxid[value]" placeholder="1D75" required="" type="text">
+            <label for="">
+              Naam:
+            </label>
+            <input enctype="multipart/form-data" id="userInput" name="name[value]" placeholder="Chantal" required="" type="text">
+              <label for="">
+                Kleur:
+              </label>
+              <input enctype="multipart/form-data" id="color-input" name="color[value]" placeholder="#00d4ff" type="color" value="#00d4ff">
+                <input type="submit" value="Registreer">
+                </input>
+              </input>
+            </input>
+          </input>
+        </form>
+      </img>
     </div>
     <script defer="" src="/scripts/index.js">
     </script>
