@@ -43,3 +43,17 @@ web/.env
 
 api/korte_broekdb
 api/korte_broek
+
+api/userdb/MANIFEST-000008
+
+api/userdb/CURRENT
+
+api/userdb/LOCK
+
+api/userdb/LOG
+
+api/userdb/LOG.old
+
+web/.env
+
+web/.env

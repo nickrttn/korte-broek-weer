@@ -12,8 +12,9 @@ router.get('/', function(req, res) {
 
 //post request to api server
 router.post('/', function(req, res) {
+
  request.post({
-  url: process.env.ENDPOINT,
+  url: process.env.ENDPOINT + 'user',
   form: {
    id: req.body.boxid.value,
    name: req.body.name.value,
@@ -24,6 +25,7 @@ router.post('/', function(req, res) {
      if (err) {
        res.render('failure', {error: err});
      } else {
+      console.log(body);
        res.render('success', {body: body});
      }
   });
