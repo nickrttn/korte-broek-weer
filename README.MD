@@ -1,13 +1,11 @@
 ## Api routes
 
-### website post with the user color
+### website post with the user color (method post)
     /user
-method post
 
-### Get color from specific box
+### Get color from specific box (method get)
     api/user:id
-Method get
 
-### Get all the docs
+### Get all the docs (method get)
     api/users
-Method get
+
