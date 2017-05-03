@@ -12,6 +12,7 @@ function wifimodule.connect(callback)
   wifi.sta.eventMonReg(wifi.STA_FAIL, function() print('[Wi-Fi] Failed to connect') end)
   wifi.sta.eventMonReg(wifi.STA_GOTIP, function()
     print('[Wi-Fi] Got IP')
+    -- callback();
     local conn = net.createConnection(net.TCP, 0)
     ip, nm, gateway = wifi.sta.getip()
 
@@ -20,7 +21,7 @@ function wifimodule.connect(callback)
     -- Auto-accept HvA open wifi thingy
     conn:on('receive', function(sck, c)
       print('[Wi-Fi] Connected to HvA Open Wi-Fi!')
-      callback()
+	    callback()
     end)
 
     conn:on('connection', function(sck, c)
