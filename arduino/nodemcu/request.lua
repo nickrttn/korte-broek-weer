@@ -12,12 +12,13 @@ function request.get(host, path, cb)
 
 	sck:on('receive', function(s, res)
 		cb(res)
+		s:close()
 	end)
 
 	sck:connect(443, host)
 end
 
-function request.post(host, path, cb)
+function request.post(host, path, body, cb)
 	local sck = tls.createConnection()
 
 	sck:on('connection', function(s)
@@ -25,10 +26,12 @@ function request.post(host, path, cb)
 					 'Connection: close\r\n' ..
 					 'Host: ' .. host .. '\r\n' ..
 					 '\r\n')
+		s:send(body)
 	end)
 
 	sck:on('receive', function(s, res)
 		cb(res)
+		s:close()
 	end)
 
 	sck:connect(443, host)

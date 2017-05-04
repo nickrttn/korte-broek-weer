@@ -27,4 +27,15 @@ function util.send_percentage(pct)
 	end)
 end
 
+function util.parse_json(body)
+	local json = body:sub(body:find("{"), body:len())
+	local t = cjson.decode(json)
+	return t
+end
+
+function util.encode_json(t)
+	local json = cjson.encode(t)
+	return json
+end
+
 return util

@@ -1,6 +1,8 @@
 local request = require 'request'
 local util = require 'util'
 
+local api_endpoint = "korte-broek-api.herokuapp.com"
+local user_state = 0
 -- GPIO pins
 button, mux_0, mux_1, mux_2 = 4, 1, 2, 3
 
@@ -14,26 +16,46 @@ gpio.mode(mux_2, gpio.OUTPUT)
 i2c_id, sda, scl, dev_addr = 0, 5, 6, 0x01
 i2c.setup(i2c_id, sda, scl, i2c.SLOW)
 
+-- timed request setup
+local timer = tmr.create()
+
+-- get the users' color
+request.get(
+	api_endpoint,
+	'/user/' .. node.chipid(),
+	function(res)
+		local user = util.parse_json(res)
+		local clr = user["color"]
+		util.send_event('c', clr["r"], clr["g"], clr["b"])
+	end
+)
+
+-- get the current temperature
+function get_temp()
+	request.get(
+	api_endpoint,
+	'/temperature',
+	function(res)
+		local t = util.parse_json(res)
+		local s;
+		if tonumber(t["temp"]) >= 22 then s=1 else s=0 end
+		util.send_event('s', s)
+	end)
+end
+
+get_temp()
+
+timer:register(600000, tmr.ALARM_AUTO, get_temp)
+timer:start()
+
 -- muxer setup (connected to pin A0)
 local channel = 0
-local mux_timer = tmr.create()
 local mux_state = 'pot'
 local prev_pot_value = 0
 local prev_tilt_value = 0
 
--- listen to button presses
-gpio.trig(button, "down", function()
-	-- debounce button presses by 250 ms
-	local delay = 0
-	x = tmr.now()
-  if x > delay then
-    delay = tmr.now() + 250000
-		send_event('d')
-  end
-end)
-
 -- poll the muxer every 100ms
-mux_timer:register(50, tmr.ALARM_AUTO, function()
+timer:register(50, tmr.ALARM_AUTO, function()
 	if mux_state == 'pot' then
 		util.calibrate_muxer(gpio.LOW, gpio.LOW, gpio.LOW)
 		local val = adc.read(channel)
@@ -42,7 +64,31 @@ mux_timer:register(50, tmr.ALARM_AUTO, function()
 			local state
 			prev_pot_value = val
 			if val > 512 then state = 1 else state = 0 end
-			util.send_event('s', state)
+			-- after 3 seconds, POST a status to /user/:id/status
+			-- 0 = lange_broek (false)
+			-- 1 = korte_broek (true)
+			util.send_event('t', state)
+
+			if not (state == user_state) then
+				user_state = state
+				util.debounce(3000000, function()
+					local t = {}
+					t["status"] = user_state
+					local json = util.encode_json(t)
+					request.post(
+						api_endpoint,
+						'/user/' .. node.chipid() .. '/status',
+						json,
+						function(res)
+							print(res)
+							local t = util.parse_json(res)
+							local evt
+							if t["status"] == "success" then evt = 2 else evt = 3 end
+							util.send_event('t', evt)
+						end
+	 				)
+				end)
+			end
 		end
 
 		mux_state = 'tilt'
@@ -60,35 +106,12 @@ mux_timer:register(50, tmr.ALARM_AUTO, function()
 		mux_state = 'pot'
 	end
 end)
-mux_timer:start()
+timer:start()
 
-util.send_event('c', 0, 120, 120)
-util.send_event('s', 0)
-
--- function parse(body)
--- 	print(body)
-
--- 	local json = body:sub(body:find("{"), body:len())
--- 	local t = cjson.decode(json)
-
--- 	for k,v in pairs(t) do
--- 		t[k] = tonumber(v)
--- 	end
-
--- 	return t
--- end
-
--- -- function handleResponse(res)
--- -- 	local clr = parse(res)
--- -- 	setColor(clr, false)
--- -- end
-
--- -- print('Box ID: ' .. node.chipid())
-
--- -- read_reg(dev_addr)
-
--- -- request.get(
--- -- 	'korte-broek-weer.herokuapp.com',
--- -- 	'/api',
--- -- 	handleResponse
--- -- )
+-- listen to button presses
+gpio.trig(button, "down", function()
+	-- debounce button presses by 250ms
+  util.debounce(250000, function()
+  	util.send_event('d')
+  end)
+end)
