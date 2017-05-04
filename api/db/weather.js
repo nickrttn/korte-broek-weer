@@ -19,8 +19,8 @@ weather.upsert = (temp,cb) => {
 	});
 };
 
-weather.get = cb => {
-	db.get('temperatureColor', (err, doc) => {
+weather.get = (id, cb) => {
+	db.get(id, (err, doc) => {
 		if (err) throw err; // eslint-disable-line curly
 		cb(doc);
 	});
