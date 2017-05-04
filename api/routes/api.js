@@ -10,7 +10,7 @@ const router = new express.Router();
 router.post('/user', (req, res) => {
 	req.body.color = util.hextorgb(req.body.color);
 
-	user.upsert(req.body, () => {
+	user.upsert(req.body, (body) => {
 		res.json({status: 'success'});
 	});
 });

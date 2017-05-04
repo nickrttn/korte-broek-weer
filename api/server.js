@@ -8,15 +8,16 @@ require('dotenv').config();
 
 const app = express();
 
-app.set('port', process.env.PORT);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', api);
 
-app.listen(app.get('port'), err => {
+
+
+app.listen(process.env.PORT, err => {
 	if (err) throw err; // eslint-disable-line curly
-	console.log(`---- listening on http://localhost:${app.get('port')}`);
+
+	console.log(`---- listening on http://localhost:${process.env.PORT}`);
 });
 
 pollWeather(process.env.POLLING_RATE);
