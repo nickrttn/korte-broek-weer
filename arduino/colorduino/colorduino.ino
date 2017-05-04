@@ -126,6 +126,7 @@ void handle_event(uint8_t len) {
 	switch(type) {
 		case 'c': handle_color_evt(); break;
 		case 's': handle_state_evt(); break;
+		case 't': handle_temp_evt(); break;
 		case 'd': handle_display_evt(); break;
 		case 'p': handle_pct_evt(); break;
 	}
@@ -152,6 +153,11 @@ void handle_state_evt() {
 	uint8_t i = Wire.read();
 	state = i;
 	tmp_state = state;
+}
+
+void handle_temp_evt() {
+	uint8_t i = Wire.read();
+	tmp_state = i;
 }
 
 void handle_display_evt() {
@@ -210,7 +216,7 @@ void draw_percentage(uint8_t pct) {
 
 	for (uint8_t i = 0; i < screen_size; i++) {
 		for (uint8_t j = 0; j < screen_size; j++) {
-			if (cur_led < rounded_leds) {
+			if (cur_led <= rounded_leds) {
 	    	percentage[i][j] = 1;
 			} else {
   			percentage[i][j] = 0;
