@@ -10,7 +10,7 @@
 1. Install [ESPtool](https://github.com/espressif/esptool). `pip install esptool`
 2. Install [`nodemcu-tool`](https://www.npmjs.com/package/nodemcu-tool). `npm i -g nodemcu-tool`
 3. Flash your NodeMCU with the provided firmware.
-   `esptool.py --baud 460800 --port /dev/cu.SLAB_USBtoUART write_flash -fm dio -fs 32m 0x00000 firmware/nodemcu-master-20170419-float-debug.bin`. Run this command from the current directory.
+   `esptool.py --baud 460800 --port /dev/cu.SLAB_USBtoUART write_flash 0x00000 firmware/nodemcu-master-11-modules-2017-05-03-14-31-30-integer.bin`. Run this command from the current directory.
 4. Upload the `.lua` files in this directory. `nodemcu-tool upload application.lua init.lua wifimodule.lua`
 5. Update `wifimodule.lua` to connect to your SSID.
 6. Connect to the NodeMCU serial monitor to see the output. `nodemcu-tool terminal`
