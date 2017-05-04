@@ -36,16 +36,16 @@ user.get = (id, cb) => {
 	});
 };
 
-
-
 user.getAll = cb => {
 	db.allDocs({
 		include_docs: true, // eslint-disable-line camelcase
-		attachments: true
+		attachments: true,
 	}, (err, docs) => {
-		docs['type'] = "user";
 		if (err) throw err; // eslint-disable-line curly
-		cb(docs);
+// console.log(docs.docs);
+
+				cb(docs);
+
 	});
 };
 
