@@ -3,13 +3,12 @@ const db = require('./create');
 const user = {};
 
 user.upsert = (data, cb) => {
-	console.log(data);
 	db.upsert(data.id, doc => {
-		console.log(doc);
 		return doc.rev ? {
 			_id: data.id,
 			_rev: doc.rev,
 			name: data.name,
+			type: data.type,
 			color: {
 				r: data.color[0],
 				g: data.color[1],
@@ -18,12 +17,15 @@ user.upsert = (data, cb) => {
 		} : {
 			_id: data.id,
 			name: data.name,
+			type: data.type,
 			color: {
 				r: data.color[0],
 				g: data.color[1],
 				b: data.color[2]
-			}
+			},
 		};
+
+
 	}, err => err ? cb('error') : cb('success'));
 };
 
@@ -34,11 +36,14 @@ user.get = (id, cb) => {
 	});
 };
 
+
+
 user.getAll = cb => {
 	db.allDocs({
 		include_docs: true, // eslint-disable-line camelcase
 		attachments: true
 	}, (err, docs) => {
+		docs['type'] = "user";
 		if (err) throw err; // eslint-disable-line curly
 		cb(docs);
 	});

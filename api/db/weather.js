@@ -2,15 +2,16 @@ const db = require('./create');
 
 const weather = {};
 
-weather.upsert = (color, cb) => {
+weather.upsert = (temp,cb) => {
 	db.upsert('temperatureColor', doc => {
 		return doc.rev ? {
 			_id: 'temperatureColor',
 			_rev: doc.rev,
-			color: {r: color[0], g: color[1], b: color[2]}
+			temp: temp,
+
 		} : {
 			_id: 'temperatureColor',
-			color: {r: color[0], g: color[1], b: color[2]}
+			temp: temp
 		};
 	}, (err, res) => {
 		if (err) throw err; // eslint-disable-line curly
