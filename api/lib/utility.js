@@ -11,6 +11,7 @@ util.windChill = (temp, windspeed) => {
 	windChill = parseFloat(windChill.toFixed(2));
 	windChill = (windspeed <= 4.8) ? temp : windChill;
 	windChill = (temp > 10) ? temp : windChill;
+	console.log(typeof windChill);
 
 	return windChill;
 };
